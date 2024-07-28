@@ -6,6 +6,8 @@ import CreateProduct from "./components/CreateProduct";
 import Products from "./components/Products";
 import ProductDetails from "./components/ProductDetails";
 import Basket from "./components/Basket";
+import ErrorPages from "./components/Error";
+import Search from "./components/Search";
 
 const App = () => {
   const routes = [
@@ -28,11 +30,21 @@ const App = () => {
       id: 4,
       link: "/productDetails/:proId",
       element: <ProductDetails />,
-    }, 
+    },
     {
       id: 5,
       link: "basket",
       element: <Basket />,
+    },
+    {
+      id: 6,
+      link: "*",
+      element: <ErrorPages />,
+    },
+    {
+      id: 7,
+      link: "/search/:searchId",
+      element: <Search />,
     },
   ];
   return (

@@ -5,26 +5,30 @@ import {
   desCremenet,
   inCrement,
 } from "../../redux/reducers/addProductSlice";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 const BasketProduct = ({ el }) => {
   const dispatch = useDispatch();
   return (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    <tr className="bg-[#eaeaea] border-b  hover:bg-gray-50 ">
       <td className="p-4">
-        <img
-          src={el.url}
-          className="w-16 md:w-32 max-w-full max-h-full"
-          alt="Apple Watch"
-        />
+        <Zoom>
+          <img
+            src={el.url}
+            className="w-16 max-[428px]:w-[100px] max-[428px]:h-[50px] max-w-full max-h-full"
+            alt="img"
+          />
+        </Zoom>
       </td>
-      <td className="px-6 py-4 text-[20px] font-semibold text-gray-900 dark:text-white">
+      <td className="px-6 py-4 text-[20px] max-[428px]:text-[10px] font-semibold text-gray-900 ">
         {el.name}
       </td>
-      <td className="px-6 py-4">
+      <td className="px-6 py-4 flex max-[428px]:hidden">
         <div className="flex items-center">
           <button
             onClick={() => dispatch(desCremenet(el._id))}
-            className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200"
             type="button"
           >
             <span className="sr-only">Quantity button</span>
@@ -45,13 +49,13 @@ const BasketProduct = ({ el }) => {
             </svg>
           </button>
           <div>
-            <h1 className="bg-gray-50 text-center w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <h1 className="bg-gray-50 text-center w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1">
               {el.quantity}
             </h1>
           </div>
           <button
             onClick={() => dispatch(inCrement(el._id))}
-            className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 "
             type="button"
           >
             <span className="sr-only">Quantity button</span>
@@ -73,16 +77,16 @@ const BasketProduct = ({ el }) => {
           </button>
         </div>
       </td>
-      <td className="px-6 py-4 text-[20px]  font-semibold text-gray-900 dark:text-white">
-        {el.price}$
+      <td className="px-6 py-4 text-[20px]  font-semibold text-gray-900 ">
+        {el.price * el.quantity}$
       </td>
       <td className="px-6 py-4">
-        <a
+        <button
           onClick={() => dispatch(deleteBasket(el._id))}
-          className="font-medium text-[25px] text-red-600 dark:text-red-500 hover:underline"
+          className="text-[25px]  max-[428px]:text-[14px] text-white bg-red-500 hover:underline font-bold py-[10px] px-[30px] rounded-3xl cursor-pointer"
         >
           delete
-        </a>
+        </button>
       </td>
     </tr>
   );
